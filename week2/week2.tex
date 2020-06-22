@@ -18,7 +18,7 @@ Ex 2.7\\
 special solution for the inhomogeneous
 Ansatz: $a_n = (F_n - 1)r$\\
 check: 
-\begin{align*}
+\begin{align*}s
 	a_n &= (F_{n-1} + F_{n-2} -1) r\\
 		&= (F_{n-1}-1)r + (F_{n-2} - 1)r + r\\
 		&= a_{n-1} + a_{n-2} + r
@@ -160,4 +160,73 @@ We see again that the $\sqrt{n}a_n$ is increasing:
 	&= \sqrt{\frac{n^2 - n + \frac{1}{4}}{n^2-n}} > 1
 \end{align*}
 in particular $\sqrt{n}a_n$ has a limit and thus $a_n = \Theta(\sqrt{n})$
+
+Ex 35\\
+multiply both sides with $(n-2)!$
+we get $a_n = \frac{F_n}{n!}$, where $F_n$ is the \emph{Fibonacci number}
+
+Ex 39\\
+$a_0 = 3$:
+\begin{center}
+	\begin{tabular}{||c c||}
+	\hline
+	n & $a_n$ \\ [0.8ex]
+	\hline \hline
+	  1 & 7.0000\\
+  2 & 47.0000\\
+  3 & 2207.0000\\
+  4 & 4870847.0000\\
+  5 & 23725150497407.0156\\[1ex]
+  \hline
+	\end{tabular}
+\end{center}
+
+$a_0 = 4$:
+\begin{center}
+	\begin{tabular}{||c c||}
+	\hline
+	  1 & 14.0000\\
+  2 & 194.0000\\
+  3 & 37634.0000\\
+  4 & 1416317954.0000\\
+  5 & 2005956546822744320.0000\\[1ex]
+  \hline
+	\end{tabular}
+\end{center}
+
+$a_0 = \frac{3}{2}$:
+should be complex. 
+\begin{align*}
+	a_n &= (\frac{1}{2} \cdot 2 \cdot e^{\theta})^{2^n} + (\frac{1}{2} \cdot 2 \cdot e^{-\theta})^{2^n} \\
+	&= 2\cos(2^n\theta)
+\end{align*}
+where $\theta = \arctan(\frac{\sqrt{7}}{3})$ \\\\
+
+
+Problem \\
+We first give a general sum formula of the summand $(i+k)(i+k-1)\cdots(i+1)$.
+Def $G(z) := \frac{1}{1-z}$, and $H^{k}(z) = \sum_{n = 0}^{\infty} (\sum_{i = 0}^{i = n} (i+k)(i+k-1)\cdots(i+1)) z^n $, Then it follows that:
+\begin{align*}
+	H^{k}(z) &= G^{(k)}(z) \cdot G(z) \\
+		&= \frac{k!}{(1-z)^{k+1}} \cdot \frac{1}{1-z}\\
+		&= \frac{(k-1)!}{(1-z)^{k+2}}\\
+		&= \sum_{l = 0}^{\infty} \binom{n + k + 1}{k+1} \cdot k! z^n\\
+		&= \sum_{l = 0}^{\infty} \frac{(n+k+1)(n+k)\cdots(n+1)}{k+1} z^n \\
+		\Rightarrow \sum_{i = 0}^{n} (i + k)(i+k-1)\cdots(i+1) &= \frac{(n+k+1)(n+k)\cdots(n+1)}{k+1}
+\end{align*}\\\\
+
+Question:\\
+$na_n = (n-3)a_{n-1} + n$, for $n > 2$, $a_0 = a_1 = a2 = 0$, find $a_n$:\\\\
+The factor is $\frac{n-3}{n} \cdot \frac{n-4}{n-1} \cdot \frac{n-5}{n-2}\cdots \frac{3}{6} \frac{2}{5} \frac{1}{4} = \frac{6}{n(n-1)(n-2)}$. Multiplying the factor gives the recursion:
+\[
+	n(n-1)(n-2)a_n = (n-1)(n-2)(n-3)a_{n-1} + n(n-1)(n-2)
+\]
+Def $b_n := n(n-1)(n-2)a_n$, we have 
+\begin{align*}
+	b_n &= n(n-1)(n-2) + b_{n-1} \\
+		&= \sum_{i = 3}^n i(i-1)(i-2) + 0\\
+		&= \sum_{i=0}^{n-3} (i+1)(i+2)(i+3) \\
+		&= \frac{(n+1)n(n-1)(n-2)}{4} \\
+		\Rightarrow a_n &= \frac{n+1}{4}
+\end{align*}
 \end{document}
