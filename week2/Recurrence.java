@@ -1,8 +1,10 @@
+import edu.princeton.cs.algs4.StdDraw;
+
 public class Recurrence {
     public static void main(String[] args) {
-        int N = 100;
+        int N = 972;
         StdDraw.setXscale(0, N);
-        StdDraw.setYscale(0, N*N);
+        StdDraw.setYscale(0, N*Math.log(N)/Math.log(2));
         StdDraw.setPenRadius(.01);
 
         int[] An = new int[N + 1];
