@@ -1,0 +1,59 @@
+\documentclass{article}  
+\usepackage{graphicx}
+\usepackage[parfill]{parskip}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath,amsthm}
+
+\newcommand{\evalAt}[3]{\ensuremath{\left.#1\right\vert_{#2 = #3}}}
+
+\begin{document}
+Ex 3.20 Solve $a_n=3a_{n-1}-3a_{n-2}+a_{n-3}\quad\hbox{for $n>2$},\quad\hbox{with $a_0 = a_1 = 0,a_2 = 1$}$\\
+\begin{align*}
+    a_n &= 3a_{n-1} - 3a_{n-2} + a_{n-3} + \delta_{n2}\\
+    A(z) &= (3z-3z^2 + z^3)A(z) + z^2\\
+    A(z) &= \frac{z^2}{(1-z)^3} = \sum_{N=2}^{\infty}\frac{N(N-1)}{2}z^N
+\end{align*}
+for $a_1=1$
+\begin{align*}
+    a_n &= 3a_{n-1} - 3_{n-2} + a_{n-3} + \delta_{n1} - 2\delta_{n2}\\
+    A(z) &= (3z - 3z^2 + z^3)A(z) + z - 2z^2\\
+    A(z) &= \frac{z - 2z^2}{(1-z)^3}
+\end{align*}
+simplify:
+\begin{align*}
+    \frac{z - 2z^2}{(1-z)^3} &= \frac{z - 2z^2}{2} \sum_{N = 2}^{\infty}N(N-1)z^{N-2} \\
+    &= \sum_{N=2}^{\infty}\frac{N(N-1)}{2}z^{N-1} - \sum_{N=2}^{\infty}N(N-1)z^N \\
+    &= z + \sum_{N = 2}^{\infty}\frac{(N+1)N}{2}z^N - \sum_{N=2}^{\infty}N(N-1)z^N\\
+    &= z + \sum_{N = 2}^{\infty} \frac{N-N^2}{2}z^N
+\end{align*}
+
+Ex 3.28 Find an expression for $[z^n]\frac{1}{\sqrt{1-z}}\log\frac{1}{1-z}$\\
+since 
+\[\frac{\partial}{\partial\alpha}(1-z)^{-\alpha} = (1-z)^{-alpha} \log \frac{1}{1-z}\], we have:
+\begin{align*}
+    [z^n]\frac{1}{\sqrt{1-z}}\log\frac{1}{1-z} &= \left.\frac{\partial}{\partial\alpha}\binom{-\alpha}{n}\right\vert_{\alpha = \frac{1}{2}}\\
+    &= \evalAt{\frac{\partial}{\partial\alpha}(-1)^n\frac{\alpha \cdot (\alpha + 1) \cdots (\alpha + (n-1))}{n!}}{\alpha}{\frac{1}{2}}\\
+    &= \evalAt{(-1)^n \cdot \frac{\alpha \cdot (\alpha + 1) \cdots (\alpha + (n-1))}{n!} [\frac{1}{\alpha}+ \frac{1}{\alpha+1}+\cdots+\frac{1}{\alpha+(n-1)}]}{\alpha}{\frac{1}{2}}\\
+    &= (-1)^n \frac{1}{2^{2n}}\binom{2n}{n} 2 [1 + \frac{1}{3} + \cdots + \frac{1}{2n - 1}]\\
+    &= (-1)^n \frac{1}{2^{2n-1}}\binom{2n}{n} 2 [H_{2n} - 2 H_n]
+\end{align*}
+
+Quiz:
+1. $a_n=9a_{n-1}-20a_{n-2}\quad\hbox{for $n>1$},\quad\hbox{with $a_0 = 0,a_1=1$}$, $lim_{n \rightarrow \infty}\frac{a_n}{a_{n-1}}$\\
+\begin{align*}
+    a_n &= 9a_{n-1} - 20 a_{n-2} + \delta_{n1}\\
+    A(z) &= (9z - 20z^2)A(z) + z\\
+    A(z) &= \frac{z}{1 - 9z + 20z^2}\\
+    A(z) &= \frac{\frac{z}{20}}{(z-\frac{1}{4}) (z - \frac{1}{5})} \\
+    A(z) &= \frac{\frac{1}{4}}{z - \frac{1}{4}} - \frac{\frac{1}{5}}{z - \frac{1}{5}}\\
+    [z^N]A(z) &= a_n = (\frac{1}{4})^{n+1} - (\frac{1}{5})^{n+1}\\
+    \lim_{n\rightarrow\infty} \frac{a_n}{a_{n-1}} &= \frac{(\frac{1}{4})^{n+1} - (\frac{1}{5})^{n+1}}{(\frac{1}{4})^{n} - (\frac{1}{5})^{n}} = 5
+\end{align*}
+
+2. The value of $\sum_{0 \leq k \leq n} \binom{2k}{k}\binom{2n-2k}{n-k}$\\
+we know that 
+\[\frac{1}{\sqrt{1-4z}} = \sum_{n \geq 0} \binom{2n}{n}z^n\],
+The sum is given by
+\[[z^n](\frac{1}{1-4z})^2 = [z^n]\frac{1}{1-4z} = 4^n\]
+\end{document}
