@@ -1,0 +1,62 @@
+\documentclass{article}  
+\usepackage{graphicx}
+\usepackage[parfill]{parskip}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath,amsthm}
+
+\begin{document}
+    
+Ex 5.3\\
+\[
+    T(z) = z + T(z)^2
+    \]
+And thus
+\begin{align*}
+    T(z) &= \frac{1 - \sqrt{1 - 4z^2}}{2z}\\
+        &= \frac{1 - ( 1 - \frac{1}{2}\cdot 4z^2 + \sum_{k\geq 2} \binom{\frac{1}{2}}{k}(-4z^2)^k)}{2z}\\
+        &\stackrel{*}{=} \frac{1 - (1 - \frac{1}{2}\cdot4z^2 - \sum_{k \geq 2} 2 \cdot \frac{1}{k}\binom{2k-2}{k-1}z^{2k})}{2z}\\
+        &= \frac{2z^2 + 2 \sum_{k\geq2}\frac{1}{k}\binom{2k-2}{k-1}z^{2k}}{2z}\\
+        &= z + \sum_{k\geq2}\frac{1}{k}\binom{2k-2}{k-1}z^{2k - 1}\\
+        &= \sum_{k \geq 1}\frac{1}{k}\binom{2k-2}{k-1}z^{2k-1}
+\end{align*}
+To $*$:
+\begin{align*}
+    \binom{\frac{1}{2}}{k} (-4)^k &= \frac{\frac{1}{2} \cdot (\frac{1}{2} - 1) \cdots (\frac{1}{2} - (k - 1))}{k!}\\
+    &= \frac{(-1)^{k-1}}{2^k} \cdot \frac{(2k-3)!}{k!} \cdot (-4)^k\\
+    &= \frac{(-1)^{k-1}}{2^k} \cdot \frac{1}{k} \cdot \frac{(2k-2)!}{(k-1)! \cdot (2k-2)!!} \cdot (-4)^k\\
+    &= \frac{(-1){k-1}}{2^k}\cdot \frac{1}{2^{k-1}}\cdot \frac{1}{k}\cdot \binom{2k-2}{k-1}\cdot (-4)^k\\
+    &= -\frac{2}{k} \binom{2k-2}{k-1}
+\end{align*}
+Interpretation:
+We know that in a binary tree, the number of leaves equal the number of internal node plus one. In this case
+the size is the sum of internal nodes and leaves, and we already the GF for the binary tree with size defined as the number of internal
+nodes,
+\[
+    GF(z) = \sum_{k \leq 0} \frac{1}{k+1}\binom{2k}{k}z^{2k+1}\]
+We could replace $z^k$ by $z^{2k+1}$ to obtain the GF with the newkly defined size function.
+
+
+Ex 5.7\\
+EGF for permutations whose cycles are all of odd length:\\
+\[
+    T(z) = SET(CYC_{odd}(z))\]
+\begin{align*}
+    T(z) &= \exp(z + \frac{z^3}{3} + \frac{z^5}{5} + \cdots)\\
+    &\stackrel{*}{=} \exp(\frac{1}{2}\log(\frac{1+z}{1-z}))\\
+    &= \sqrt{\frac{1+z}{1-z}}
+\end{align*}
+To $*$:
+Method 1:
+\begin{align*}
+    \sum_{l \geq 0} \frac{z^{2l+1}}{2l+1} &= \frac{1}{2}(\sum_{k\geq 0}\frac{z^k}{k} - \sum_{k\geq0}\frac{(-1)^{k-1}z^k}{k})\\
+    &= \frac{1}{2}(\log(1 + z) - \log(1 - z))
+\end{align*}
+Method 2:
+\begin{align*}
+    G(z) &= 1 + z^2 + z^4 + z^6 +\cdots \\
+    \int G(z) &= z + \frac{z^3}{3} + \frac{z^5}{5} + \cdots \\
+    z + \frac{z^3}{3} + \frac{z^5}{5} + \cdots &= \int \frac{1}{1-z^2}dz\\
+    &= \frac{1}{2}\log(\frac{1+z}{1-z})
+\end{align*}
+\end{document}
